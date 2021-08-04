@@ -1,0 +1,41 @@
+name: SPE Gradle Build
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    if: >-
+      ${{ !contains(github.event.head_commit.message, '[ci skip]') &&
+      !contains(github.event.head_commit.message, '[skip ci]')
+      }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup JAVA 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: 8
+          distribution: 'adopt'
+
+      - name: Cache Maven Packages
+        uses: actions/cache@v2.1.5
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build SPE
+        run: |
+          git config --global user.email "no-reply@github.com"
+          git config --global user.name "Github Action"
+          chmod -R +x ./gradlew
+          ./gradlew clean build
+
+      - name: Upload SPE
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: SPE
+          path: build/libs/*

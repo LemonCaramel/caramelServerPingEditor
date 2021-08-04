@@ -1,0 +1,12 @@
+name: caramelServerPingEditor
+main: moe.caramel.serverpingeditor.Main
+description: ${description}
+version: ${version}
+authors: [ LemonCaramel ]
+website: https://caramel.moe
+api-version: 1.13
+
+commands:
+  caramelserverpingeditor:
+    aliases: [ cspe, spe ]
+    description: ServerPingEditor Main command

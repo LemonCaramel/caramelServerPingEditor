@@ -1,0 +1,22 @@
+# This will be displayed as online players on the client.
+sample-player-list:
+  - '&bHello, World!'
+  - ''
+  - 'Sample List!'
+  - ''
+  - 'Change Me!'
+
+# When this option is enabled, the player list and player count are invisible.
+hide-players: false
+
+# This is the maximum number of players. (-1, disable)
+max-players: -1
+# This is the current player count. (-1, disable)
+current-players: -1
+
+# This is the version name of the server that will be displayed on the client. (null, disable)
+server-version-name: null
+
+# WARNING!!!
+# If you don't know what it is, don't touch this. (-1, disable)
+server-protocol-version: -1
